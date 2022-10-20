@@ -1,7 +1,7 @@
 export { fetchJSON };
 
-async function fetchJSON(what) {
+async function fetchJSON(file) {
 
-    // YOUR CODE HERE
+    // await fetch(file).then(r => )
 
 }

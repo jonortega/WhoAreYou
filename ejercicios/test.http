@@ -1,0 +1,5 @@
+# cd07d40d2d8c44f1b726b526aa22d53c
+
+GET https://api.football-data.org/v4/competitions/2021/teams
+Accept: application/json
+X-Auth-Token: cd07d40d2d8c44f1b726b526aa22d53c
