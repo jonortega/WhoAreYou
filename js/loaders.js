@@ -2,6 +2,6 @@ export { fetchJSON };
 
 async function fetchJSON(file) {
 
-    // await fetch(file).then(r => )
+    return await fetch(file).then(r => r.json())
 
 }

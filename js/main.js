@@ -2,9 +2,6 @@ import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
 
 /*
-Hemos hecho hasta 6.1.Ejercicios el numero 2. no sabemos
-importar los datos de un json a traves de una funcion.
-
 Yo he hecho el punto 3 (getSolution()) pero hay que comprobar
 que funciona bien.
 
@@ -20,7 +17,9 @@ Luego seguir con lo resto.
 function differenceInDays(base) {
     let fecha = Date.now()
     let hoy = new Date(fecha)
-    return Math.floor(Math.abs(hoy - base) / 1000 * 3600 * 24)
+    return Math.floor(Math.abs(hoy - base) / (1000 * 3600 * 24)) % 39
+    // mod 39 es para que el numero salga entre 0-39 porque el array solutions solo tiene 39 elementos
+    // y si no daba error al ejecutar porque salen numeros mas grandes (0-365)
 }
 
 let difference_In_Days = differenceInDays(new Date("08-18-2022"));
@@ -41,12 +40,12 @@ let game = {
 
 function getSolution(players, solutionArray, difference_In_Days) {
     let idJugadorHoy = solutionArray[difference_In_Days - 1]
-    let jugadorHoy = players.filter(player => player.id == jugadorHoy.id)[0]
+    let jugadorHoy = players.filter(player => player.id == idJugadorHoy.id)[0]
     console.log(jugadorHoy)
     return jugadorHoy
 }
 
-Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
+Promise.all([fetchJSON("json/fullplayers.json"), fetchJSON("json/solution.json")]).then(
     (values) => {
 
         let solution;
