@@ -1,18 +1,6 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
 
-/*
-Yo he hecho el punto 3 (getSolution()) pero hay que comprobar
-que funciona bien.
-
-Despues de esto hay que hacer el 4 en un nuevo bramch de git
-que se llame blurred.
-
-Lo ultimo es hacer el git tag con el milestone1.
-
-Luego seguir con lo resto.
-*/
-
 
 function differenceInDays(base) {
     let fecha = Date.now()
