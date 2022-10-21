@@ -41,7 +41,6 @@ let game = {
 function getSolution(players, solutionArray, difference_In_Days) {
     let idJugadorHoy = solutionArray[difference_In_Days - 1]
     let jugadorHoy = players.filter(player => player.id == idJugadorHoy.id)[0]
-    console.log(jugadorHoy)
     return jugadorHoy
 }
 
