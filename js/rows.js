@@ -1,3 +1,6 @@
+import { fetchJSON } from "./loaders.js";
+import { stringToHTML } from "./fragments.js";
+
 // YOUR CODE HERE :  
 // .... stringToHTML ....
 // .... setupRows .....
@@ -6,20 +9,42 @@ const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
 
 
-let setupRows = function (game) {
+export let setupRows = function (game) {
 
 
     function leagueToFlag(leagueId) {
-        // YOUR CODE HERE
+        let flags = [{'id': 564, 'nombre' : 'es1'},{'id': 8, 'nombre' : 'en1'},{'id': 82, 'nombre' : 'de1'},
+                    {'id': 384, 'nombre' : 'it1'},{'id': 301, 'nombre' : 'fr1'}]
+        let sol = flags.forEach(e => e.id == leagueId)
+        return flags[sol].nombre
     }
 
 
     function getAge(dateString) {
-        // YOUR CODE HERE
+        let birthday_date = new Date(birthday);
+        let ageDifMs = Date.now() - birthday_date.getTime();
+        let ageDate = new Date(ageDifMs);
+        return Math.abs(ageDate.getUTCFullYear() - 1970); 
     }
     
     let check = function (theKey, theValue) {
-            // YOUR CODE HERE
+        if(theKey == 'birthdate'){
+            if(theValue == solution.game.birthdate){
+                return 'correct'
+            }else{
+                if(getAge(theValue) > getAge(solution.game.birthdate)){
+                    return 'lower'
+                }else{
+                    return 'higher'
+                }
+            }
+        }else{
+            if(solution.game[theKey] == theValue){
+                return 'correct'
+            }else{
+                return 'incorrect'
+            }
+        }
     }
 
     function setContent(guess) {
@@ -55,8 +80,10 @@ let setupRows = function (game) {
         playersNode.prepend(stringToHTML(child))
     }
 
-    let getPlayer = function (playerId) {
-            // YOUR CODE HERE   
+    let getPlayer =  async function (playerId) {
+        let archivo = await fetchJSON('json/fullplayers.json')
+        let res = archivo.filter(e => e.id == playerId)
+        return res
     }
 
     return /* addRow */ function (playerId) {

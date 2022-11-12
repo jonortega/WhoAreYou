@@ -1,5 +1,6 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
+import { setupRows } from "./rows.js";
 
 
 function differenceInDays(base) {
@@ -52,9 +53,16 @@ Promise.all([fetchJSON("json/fullplayers.json"), fetchJSON("json/solution.json")
         // YOUR CODE HERE
         let addRow = setupRows( /* THIS NEEDS A PARAMETER */);
         // get myInput object...
+        let texto = document.getElementById("myInput")
         // when the user types a number an press the Enter key:
-        addRow( /* the ID of the player, where is it? */);
-        //  
+        texto.addEventListener("keydown", e => {
+            if (e.keyCode == 13){
+                addRow(texto.textContent);
+            }
+            
+        //
+        })
+          
 
 
     }

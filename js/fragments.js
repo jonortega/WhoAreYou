@@ -4,3 +4,8 @@ export const leftArrow = `<svg xmlns="http://www.w3.org/2000/svg" fill="white" v
 // YOUR CODE HERE export stringToHTML . Consider to use a single export command instead of one for each const/function
 //
 
+export const stringToHTML = (str) => {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(str, 'text/html');
+    return doc.body
+};
