@@ -1,4 +1,3 @@
-import { fetchJSON } from "./loaders.js";
 import { stringToHTML } from "./fragments.js";
 
 // YOUR CODE HERE :  
@@ -13,35 +12,32 @@ export let setupRows = function (game) {
 
 
     function leagueToFlag(leagueId) {
-        let flags = [{'id': 564, 'nombre' : 'es1'},{'id': 8, 'nombre' : 'en1'},{'id': 82, 'nombre' : 'de1'},
-                    {'id': 384, 'nombre' : 'it1'},{'id': 301, 'nombre' : 'fr1'}]
-        let sol = flags.forEach(e => e.id == leagueId)
-        return flags[sol].nombre
+        let flags = [{ 'id': 564, 'nombre': 'es1' }, { 'id': 8, 'nombre': 'en1' }, { 'id': 82, 'nombre': 'de1' }, { 'id': 384, 'nombre': 'it1' }, { 'id': 301, 'nombre': 'fr1' }]
+        return flags.filter(e => e.id == leagueId)[0].nombre
     }
-
 
     function getAge(dateString) {
-        let birthday_date = new Date(birthday);
+        let birthday_date = new Date(dateString);
         let ageDifMs = Date.now() - birthday_date.getTime();
         let ageDate = new Date(ageDifMs);
-        return Math.abs(ageDate.getUTCFullYear() - 1970); 
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
-    
+
     let check = function (theKey, theValue) {
-        if(theKey == 'birthdate'){
-            if(theValue == solution.game.birthdate){
+        if (theKey == 'birthdate') {
+            if (theValue == game.solution.birthdate) {
                 return 'correct'
-            }else{
-                if(getAge(theValue) > getAge(solution.game.birthdate)){
+            } else {
+                if (getAge(theValue) > getAge(game.solution.birthdate)) {
                     return 'lower'
-                }else{
+                } else {
                     return 'higher'
                 }
             }
-        }else{
-            if(solution.game[theKey] == theValue){
+        } else {
+            if (game.solution[theKey] == theValue) {
                 return 'correct'
-            }else{
+            } else {
                 return 'incorrect'
             }
         }
@@ -53,7 +49,7 @@ export let setupRows = function (game) {
             `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
             `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
             `${guess.position}`,
-            `${getAge(guess.birthdate)}` /* YOUR CODE HERE */
+            `${getAge(guess.birthdate)}`
         ]
     }
 
@@ -80,16 +76,13 @@ export let setupRows = function (game) {
         playersNode.prepend(stringToHTML(child))
     }
 
-    let getPlayer =  async function (playerId) {
-        let archivo = await fetchJSON('json/fullplayers.json')
-        let res = archivo.filter(e => e.id == playerId)
-        return res
+    let getPlayer = function (playerId) {
+        return game.players.filter(e => e.id == playerId)[0]
     }
 
     return /* addRow */ function (playerId) {
-
         let guess = getPlayer(playerId)
-        console.log(guess)
+        console.log("guess: ", guess)
 
         let content = setContent(guess)
         showContent(content, guess)

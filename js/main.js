@@ -33,37 +33,35 @@ function getSolution(players, solutionArray, difference_In_Days) {
     return jugadorHoy
 }
 
-Promise.all([fetchJSON("json/fullplayers.json"), fetchJSON("json/solution.json")]).then(
-    (values) => {
+Promise.all([fetchJSON("json/fullplayers.json"), fetchJSON("json/solution.json")]).then((values) => {
 
-        let solution;
+    let solution;
 
-        [game.players, solution] = values;
+    [game.players, solution] = values;
 
-        game.solution = getSolution(game.players, solution, difference_In_Days);
+    game.solution = getSolution(game.players, solution, difference_In_Days);
 
-        console.log(game.solution);
+    console.log(game)
 
-        document.getElementById(
-            "mistery"
-        ).src = `https://playfootball.games/media/players/${game.solution.id % 32
-        }/${game.solution.id}.png`;
-
-
-        // YOUR CODE HERE
-        let addRow = setupRows( /* THIS NEEDS A PARAMETER */);
-        // get myInput object...
-        let texto = document.getElementById("myInput")
-        // when the user types a number an press the Enter key:
-        texto.addEventListener("keydown", e => {
-            if (e.keyCode == 13){
-                addRow(texto.textContent);
-            }
-            
-        //
-        })
-          
+    document.getElementById(
+        "mistery"
+    ).src = `https://playfootball.games/media/players/${game.solution.id % 32
+    }/${game.solution.id}.png`;
 
 
-    }
+    // YOUR CODE HERE
+    let addRow = setupRows(game);
+    // get myInput object...
+    let texto = document.getElementById("myInput")
+    // when the user types a number an press the Enter key:
+    texto.addEventListener("keydown", e => {
+        if (e.keyCode == 13) {
+            addRow(texto.value);
+        }
+
+    })
+
+
+
+}
 );
