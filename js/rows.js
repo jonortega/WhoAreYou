@@ -13,12 +13,12 @@ function pad(a, b) {
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
+let interval
 
 
 export let setupRows = function (game) {
 
     let [state, updateState] = initState('WAYgameState', game.solution.id)
-    console.log(state, updateState)
 
     function leagueToFlag(leagueId) {
         let flags = [{ 'id': 564, 'nombre': 'es1' }, { 'id': 8, 'nombre': 'en1' }, { 'id': 82, 'nombre': 'de1' }, { 'id': 384, 'nombre': 'it1' }, { 'id': 301, 'nombre': 'fr1' }]
@@ -60,7 +60,7 @@ export let setupRows = function (game) {
         var mins = s % 60;
         var hrs = (s - mins) / 60;
 
-        return hrs + ':' + mins + ':' + secs;
+        return (hrs - 1) + ':' + mins + ':' + secs;
     }
 
 
@@ -87,8 +87,6 @@ export let setupRows = function (game) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 document.body.appendChild(stringToHTML(headless(stats())));
-                let nextPlayer = document.getElementById("nextPlayer")
-                nextPlayer.textContent = timeout
                 document.getElementById("showHide").onclick = toggle;
                 bindClose();
                 resolve();
@@ -100,6 +98,7 @@ export let setupRows = function (game) {
         document.getElementById("closedialog").onclick = function () {
             document.body.removeChild(document.body.lastChild)
             document.getElementById("mistery").classList.remove("hue-rotate-180", "blur")
+            clearInterval(interval)
         }
     }
 
@@ -180,13 +179,15 @@ export let setupRows = function (game) {
 
         if (gameEnded(playerId)) {
 
-            let interval = setInterval(() => {
-                const endDate = "2022-11-13T00:00:00.000Z";
+            interval = setInterval(() => {
                 const now = new Date();
+                let formattedDate = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + (now.getDate() + 1)
+                const endDate = formattedDate + "T00:00:00.000Z";
                 const end = new Date(endDate);
+                let nextPlayer = document.getElementById("nextPlayer")
+                nextPlayer.textContent = msToTime(Math.abs(now - end))
                 return Math.abs(now - end)
             }, 1000)
-            console.log(interval)
 
             if (playerId == game.solution.id) {
                 updateStats(game.guesses.length);
