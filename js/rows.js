@@ -6,6 +6,10 @@ import { stats } from "./fragments.js";
 // YOUR CODE HERE :  
 // .... stringToHTML ....
 // .... setupRows .....
+function pad(a, b) {
+    return (1e15 + a + '').slice(-b);
+}
+
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
@@ -67,13 +71,33 @@ export let setupRows = function (game) {
         })
     }
 
+    function showStats(timeout) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                document.body.appendChild(stringToHTML(headless(stats())));
+                document.getElementById("showHide").onclick = toggle;
+                bindClose();
+                resolve();
+            }, timeout)
+        })
+    }
+
+    function bindClose() {
+        document.getElementById("closedialog").onclick = function () {
+            document.body.removeChild(document.body.lastChild)
+            document.getElementById("mistery").classList.remove("hue-rotate-180", "blur")
+        }
+    }
+
     function success() {
         unblur('success')
+        showStats()
 
     }
 
     function gameOver() {
         unblur('gameOver')
+        showStats()
     }
 
     function setContent(guess) {
@@ -142,15 +166,16 @@ export let setupRows = function (game) {
         resetInput();
 
         if (gameEnded(playerId)) {
-            updateStats(game.guesses.length);
 
             if (playerId == game.solution.id) {
+                updateStats(game.guesses.length);
                 success();
-            }
-
-            if (game.guesses.length == 8) {
+            } else {
+                updateStats(game.guesses.length + 1);
                 gameOver();
             }
+
+            //let interval = /* YOUR CODE HERE */ ;
         }
 
 

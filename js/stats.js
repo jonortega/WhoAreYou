@@ -27,7 +27,7 @@ let getStats = function (what) {
     let lista = localStorage.getItem(what)
     if (lista == null) {
         lista = JSON.stringify({
-            winDistribution: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            winDistribution: [0, 0, 0, 0, 0, 0, 0, 0],
             gamesFailed: 0,
             currentStreak: 0,
             bestStreak: 0,
