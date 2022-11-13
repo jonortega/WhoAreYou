@@ -1,5 +1,6 @@
 import { setupRows } from "./rows.js";
 export { autocomplete }
+import { fetchJSON } from "./loaders.js";
 // export { autocomplete, higher, lower }
 
 // ! Me dice que no se esperaba el "<" de al principio de "<svg"
@@ -62,7 +63,11 @@ function autocomplete(inp, game) {
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
 
-                    addRow(inp.value.id) // ! No se si es ese parametro, da error porque es "undefined"
+                    let seleccionado = players.filter(e => e.name==inp.value)
+
+                    console.log(seleccionado[0].id)
+
+                    addRow(seleccionado[0].id) // ! No se si es ese parametro, da error porque es "undefined"
                 });
                 a.appendChild(b);
             }
