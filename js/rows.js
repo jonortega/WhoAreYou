@@ -1,5 +1,7 @@
 import { lower, stringToHTML, higher } from "./fragments.js";
 import { initState } from "./stats.js";
+import { updateStats } from "./stats.js";
+import { stats } from "./fragments.js";
 
 // YOUR CODE HERE :  
 // .... stringToHTML ....
@@ -67,6 +69,7 @@ export let setupRows = function (game) {
 
     function success() {
         unblur('success')
+
     }
 
     function gameOver() {
@@ -109,7 +112,10 @@ export let setupRows = function (game) {
     function resetInput() {
         let texto = document.getElementById('myInput')
         texto.value = ''
-        texto.placeholder = 'Guess ' + game.guesses.length + ' of 8'
+        if (game.guesses.length < 8) {
+            texto.placeholder = 'Guess ' + (game.guesses.length + 1) + ' of 8'
+        }
+
     }
 
     let getPlayer = function (playerId) {
@@ -136,7 +142,7 @@ export let setupRows = function (game) {
         resetInput();
 
         if (gameEnded(playerId)) {
-            // updateStats(game.guesses.length);
+            updateStats(game.guesses.length);
 
             if (playerId == game.solution.id) {
                 success();

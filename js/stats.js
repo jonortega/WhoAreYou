@@ -41,23 +41,25 @@ let getStats = function (what) {
 
 
 function updateStats(t) {
+    console.log(t)
     let gameStats = JSON.parse(localStorage.getItem('gameStats'))
-
-    gameStats.winDistribution[t - 1]++
     gameStats.totalGames++
-    if (t >= 8) {
-        gameStats.gamesFailed++
-        gameStats.currentStreak = 0
-    } else {
+    if (t <= 8) {
+        gameStats.winDistribution[t - 1]++
         gameStats.currentStreak++
         if (gameStats.currentStreak > gameStats.bestStreak) {
             gameStats.bestStreak = gameStats.currentStreak
         }
+    } else {
+        gameStats.gamesFailed++
+        gameStats.currentStreak = 0
     }
     gameStats.successRate = successRate(gameStats)
 
-    localStorage.setItem("gameStats", JSOn.stringify(gameStats))
+    localStorage.setItem("gameStats", JSON.stringify(gameStats))
 
 };
 
 let gamestats = getStats('gameStats');
+
+
