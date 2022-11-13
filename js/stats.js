@@ -1,11 +1,12 @@
-export {initState}
+export { initState }
 
-let initState = function(what, solutionId) { 
+let initState = function (what, solutionId) {
 
     let solucion = []
     let lista = localStorage.getItem(what)
     if(lista == null){
         localStorage.setItem(what, JSON.stringify({"guesses":[], "solution":solutionId}))
+
         lista = localStorage.getItem(what)
     }
     solucion[0] = lista
@@ -16,4 +17,4 @@ let initState = function(what, solutionId) {
         localStorage.setItem(what, JSON.stringify(lista))
     })
     return solucion
-}
+}   
