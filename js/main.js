@@ -1,6 +1,7 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
 import { setupRows } from "./rows.js";
+import { autocomplete } from "./autocomplete.js";
 
 
 function differenceInDays(base) {
@@ -50,16 +51,24 @@ Promise.all([fetchJSON("json/fullplayers.json"), fetchJSON("json/solution.json")
 
 
     // YOUR CODE HERE
-    let addRow = setupRows(game);
-    // get myInput object...
-    let texto = document.getElementById("myInput")
-    // when the user types a number an press the Enter key:
-    texto.addEventListener("keydown", e => {
-        if (e.keyCode == 13) {
-            addRow(texto.value);
-        }
+    autocomplete(document.getElementById("myInput"), game)
 
-    })
+
+
+
+    // TODO: Eliminar la parte comentada cuando funcione lo otro
+    /*
+        let addRow = setupRows(game);
+        // get myInput object...
+        let texto = document.getElementById("myInput")
+        // when the user types a number an press the Enter key:
+        texto.addEventListener("keydown", e => {
+            if (e.keyCode == 13) {
+                addRow(texto.value);
+            }
+
+        })
+    */
 
 
 
