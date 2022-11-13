@@ -1,4 +1,4 @@
-export { initState }
+export {updateStats, getStats, initState}
 
 let initState = function (what, solutionId) {
 
@@ -17,4 +17,31 @@ let initState = function (what, solutionId) {
         localStorage.setItem(what, JSON.stringify(lista))
     })
     return solucion
-}   
+}
+
+function successRate (e){
+    // YOUR CODE HERE
+}
+
+let getStats = function(what) {
+    let lista = localStorage.getItem(what)
+    if(lista == null){
+        lista = JSON.stringify({winDistribution: [0,0,0,0,0,0,0,0,0],
+            gamesFailed: 0,
+            currentStreak: 0,
+            bestStreak: 0,
+            totalGames: 0,
+            successRate: 0
+            })
+        localStorage.setItem(what, lista)
+    }
+    return lista
+};
+
+
+function updateStats(t){
+    let gameStats = JSON.parse(localStorage.getItem('gameStats'))
+
+};
+
+let gamestats = getStats('gameStats');
