@@ -51,9 +51,9 @@ function autocomplete(inp, game) {
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
 
-                    let seleccionado = players.filter(e => e.name==inp.value)
+                    let seleccionado = players.filter(e => e.name == inp.value)
 
-                    addRow(seleccionado[0].id) // ! No se si es ese parametro, da error porque es "undefined"
+                    addRow(seleccionado[0].id)
                 });
                 a.appendChild(b);
             }
