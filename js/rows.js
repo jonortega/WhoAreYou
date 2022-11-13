@@ -1,4 +1,4 @@
-import { lower, stringToHTML, higher } from "./fragments.js";
+import { lower, stringToHTML, higher, headless, toggle } from "./fragments.js";
 import { initState } from "./stats.js";
 import { updateStats } from "./stats.js";
 import { stats } from "./fragments.js";
@@ -52,6 +52,18 @@ export let setupRows = function (game) {
         }
     }
 
+    function msToTime(s) {
+        var ms = s % 1000;
+        s = (s - ms) / 1000;
+        var secs = s % 60;
+        s = (s - secs) / 60;
+        var mins = s % 60;
+        var hrs = (s - mins) / 60;
+
+        return hrs + ':' + mins + ':' + secs;
+    }
+
+
     function unblur(outcome) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -75,6 +87,8 @@ export let setupRows = function (game) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 document.body.appendChild(stringToHTML(headless(stats())));
+                let nextPlayer = document.getElementById("nextPlayer")
+                nextPlayer.textContent = timeout
                 document.getElementById("showHide").onclick = toggle;
                 bindClose();
                 resolve();
@@ -89,15 +103,14 @@ export let setupRows = function (game) {
         }
     }
 
-    function success() {
+    function success(timeout) {
         unblur('success')
-        showStats()
-
+        showStats(timeout)
     }
 
-    function gameOver() {
+    function gameOver(timeout) {
         unblur('gameOver')
-        showStats()
+        showStats(timeout)
     }
 
     function setContent(guess) {
@@ -167,15 +180,21 @@ export let setupRows = function (game) {
 
         if (gameEnded(playerId)) {
 
+            let interval = setInterval(() => {
+                const endDate = "2021-02-26T00:00:00.000Z";
+                const now = new Date();
+                const end = new Date(endDate);
+                return Math.abs(now - end)
+            }, 1000)
+
             if (playerId == game.solution.id) {
                 updateStats(game.guesses.length);
-                success();
+                success(interval);
             } else {
                 updateStats(game.guesses.length + 1);
-                gameOver();
+                gameOver(interval);
             }
 
-            //let interval = /* YOUR CODE HERE */ ;
         }
 
 
