@@ -41,7 +41,6 @@ let getStats = function (what) {
 
 
 function updateStats(t) {
-    console.log(t)
     let gameStats = JSON.parse(localStorage.getItem('gameStats'))
     gameStats.totalGames++
     if (t <= 8) {

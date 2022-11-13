@@ -181,11 +181,12 @@ export let setupRows = function (game) {
         if (gameEnded(playerId)) {
 
             let interval = setInterval(() => {
-                const endDate = "2021-02-26T00:00:00.000Z";
+                const endDate = "2022-11-13T00:00:00.000Z";
                 const now = new Date();
                 const end = new Date(endDate);
                 return Math.abs(now - end)
             }, 1000)
+            console.log(interval)
 
             if (playerId == game.solution.id) {
                 updateStats(game.guesses.length);
