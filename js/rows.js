@@ -49,8 +49,7 @@ export let setupRows = function (game) {
             `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
             `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
             `${guess.position}`,
-            `${getAge(guess.birthdate)}`
-            /*`${check('birthdate', guess.birthdate) == 'higher'?higher.stringToHTML:check('birthdate', guess.birthdate)=='lower'?lower.stringToHTML:''}`*/
+            `${getAge(guess.birthdate)}${check('birthdate', guess.birthdate) == 'higher'?stringToHTML(higher).innerHTML:check('birthdate', guess.birthdate)=='lower'?stringToHTML(lower).innerHTML:''}`,
         ]
     }
 
@@ -59,7 +58,7 @@ export let setupRows = function (game) {
         for (let j = 0; j < content.length; j++) {
             s = "".concat(((j + 1) * delay).toString(), "ms")
             fragments += `<div class="w-1/5 shrink-0 flex justify-center ">
-                            <div class="mx-1 overflow-hidden w-full max-w-2 shadowed font-bold text-xl flex aspect-square rounded-full justify-center items-center bg-slate-400 text-white ${check(attribs[j], guess[attribs[j]]) == 'correct' ? 'bg-green-500' : check(attribs[j], guess[attribs[j]]) == 'higher'?stringToHTML(higher):check(attribs[j], guess[attribs[j]])=='lower'?stringToHTML(lower): ''} opacity-0 fadeInDown" style="max-width: 60px; animation-delay: ${s};">
+                            <div class="mx-1 overflow-hidden w-full max-w-2 shadowed font-bold text-xl flex aspect-square rounded-full justify-center items-center bg-slate-400 text-white ${check(attribs[j], guess[attribs[j]]) == 'correct' ? 'bg-green-500' : ''} opacity-0 fadeInDown" style="max-width: 60px; animation-delay: ${s};">
                                 ${content[j]}
                             </div>
                          </div>`
