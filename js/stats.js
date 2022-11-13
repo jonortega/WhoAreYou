@@ -10,6 +10,7 @@ let initState = function(what, solutionId) {
     }
     solucion[0] = lista
     solucion[1] = ((guess) => {
+        console.log(lista.guesses)
         lista.guesses.push(guess)
         localStorage.setItem(what, lista)
     })
