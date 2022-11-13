@@ -4,7 +4,7 @@ let initState = function(what, solutionId) {
 
     let solucion = []
     let lista = localStorage.getItem(what)
-    if(lista === null){
+    if(lista == null){
         localStorage.setItem(what, JSON.stringify({"guesses":[], "solution":solutionId}))
         lista = localStorage.getItem(what)
     }
@@ -15,8 +15,5 @@ let initState = function(what, solutionId) {
         lista.guesses.push(guess)
         localStorage.setItem(what, JSON.stringify(lista))
     })
-
-    console.log(solucion)
-
     return solucion
 }

@@ -35,7 +35,7 @@ export let setupRows = function (game) {
                     return 'lower'
                 } else {
                     return 'higher'
-                }
+                }succes
             }
         } else {
             if (game.solution[theKey] == theValue) {
@@ -63,6 +63,14 @@ export let setupRows = function (game) {
                 resolve();
             }, "2000")
         })
+    }
+
+    function success() {
+        unblur('success')
+    }
+
+    function gameOver() {
+        unblur('gameOver')
     }
 
     function setContent(guess) {
@@ -100,7 +108,8 @@ export let setupRows = function (game) {
 
     function resetInput(){
         let texto = document.getElementById('myInput')
-        texto.value = 'Guess '+game.guesses.length+' of 8'
+        texto.value = ''
+        texto.placeholder = 'Guess '+game.guesses.length+' of 8'
     }
 
     let getPlayer = function (playerId) {
@@ -108,7 +117,9 @@ export let setupRows = function (game) {
     }
 
     function gameEnded(lastGuess){
-        // YOUR CODE HERE
+        if(game.guesses.length >= 8 || lastGuess == game.solution.id){
+            return true;
+        }else{return false}
     }
 
     resetInput();
