@@ -12,7 +12,7 @@ const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
 export let setupRows = function (game) {
 
     let [state, updateState] = initState('WAYgameState', game.solution.id)
-    console.log(state,updateState)
+    console.log(state, updateState)
 
     function leagueToFlag(leagueId) {
         let flags = [{ 'id': 564, 'nombre': 'es1' }, { 'id': 8, 'nombre': 'en1' }, { 'id': 82, 'nombre': 'de1' }, { 'id': 384, 'nombre': 'it1' }, { 'id': 301, 'nombre': 'fr1' }]
@@ -35,7 +35,7 @@ export let setupRows = function (game) {
                     return 'lower'
                 } else {
                     return 'higher'
-                }succes
+                }
             }
         } else {
             if (game.solution[theKey] == theValue) {
@@ -47,16 +47,16 @@ export let setupRows = function (game) {
     }
 
     function unblur(outcome) {
-        return new Promise( (resolve, reject) =>  {
+        return new Promise((resolve, reject) => {
             setTimeout(() => {
                 document.getElementById("mistery").classList.remove("hue-rotate-180", "blur")
                 document.getElementById("combobox").remove()
                 let color, text
-                if (outcome=='success'){
-                    color =  "bg-blue-500"
+                if (outcome == 'success') {
+                    color = "bg-blue-500"
                     text = "Awesome"
                 } else {
-                    color =  "bg-rose-500"
+                    color = "bg-rose-500"
                     text = "The player was " + game.solution.name
                 }
                 document.getElementById("picbox").innerHTML += `<div class="animate-pulse fixed z-20 top-14 left-1/2 transform -translate-x-1/2 max-w-sm shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden ${color} text-white"><div class="p-4"><p class="text-sm text-center font-medium">${text}</p></div></div>`
@@ -79,7 +79,7 @@ export let setupRows = function (game) {
             `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
             `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
             `${guess.position}`,
-            `${getAge(guess.birthdate)}${check('birthdate', guess.birthdate) == 'higher'?stringToHTML(higher).innerHTML:check('birthdate', guess.birthdate)=='lower'?stringToHTML(lower).innerHTML:''}`,
+            `${getAge(guess.birthdate)}${check('birthdate', guess.birthdate) == 'higher' ? stringToHTML(higher).innerHTML : check('birthdate', guess.birthdate) == 'lower' ? stringToHTML(lower).innerHTML : ''}`,
         ]
     }
 
@@ -106,20 +106,20 @@ export let setupRows = function (game) {
         playersNode.prepend(stringToHTML(child))
     }
 
-    function resetInput(){
+    function resetInput() {
         let texto = document.getElementById('myInput')
         texto.value = ''
-        texto.placeholder = 'Guess '+game.guesses.length+' of 8'
+        texto.placeholder = 'Guess ' + game.guesses.length + ' of 8'
     }
 
     let getPlayer = function (playerId) {
         return game.players.filter(e => e.id == playerId)[0]
     }
 
-    function gameEnded(lastGuess){
-        if(game.guesses.length >= 8 || lastGuess == game.solution.id){
+    function gameEnded(lastGuess) {
+        if (game.guesses.length >= 8 || lastGuess == game.solution.id) {
             return true;
-        }else{return false}
+        } else { return false }
     }
 
     resetInput();
@@ -135,7 +135,7 @@ export let setupRows = function (game) {
 
         resetInput();
 
-         if (gameEnded(playerId)) {
+        if (gameEnded(playerId)) {
             // updateStats(game.guesses.length);
 
             if (playerId == game.solution.id) {
@@ -145,7 +145,7 @@ export let setupRows = function (game) {
             if (game.guesses.length == 8) {
                 gameOver();
             }
-         }
+        }
 
 
         showContent(content, guess)
