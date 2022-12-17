@@ -16,3 +16,15 @@ fs.createWriteStream() crea un elemento en el path indicado al cual se permite e
 
 ## 4-
 res.body.pipe crea una "tuberia" (pipe) para relacionar el flujo de lectura con el fujo de escritura.
+
+# 1.3
+
+## 2-
+```js
+encodeURI(url)
+```
+
+# 1.5
+```js
+jq -er 'map(.teamId) | .[]' fullplayers.json | Sort -Unique > teamIDs.txt
+```
