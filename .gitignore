@@ -1,3 +1,4 @@
 .DS_Store
-backend/json/nationalities/*
-backend/json/leagues/*
+./backend/json/nationalities/*
+./backend/json/leagues/*
+./app/node_modules/
