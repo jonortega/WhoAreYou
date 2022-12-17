@@ -1,36 +1,44 @@
 # 3.1
+
 ## 1-
 ```js
 x = await fetch('http://api.football-data.org/v4/competitions').then(r => r.json())
 x.competitions.filter(element => element.id == 2014)
 ```
+
 ## 2-
 ```js
 x = await fetch('http://api.football-data.org/v4/competitions').then(r => r.json())
 x.competitions.filter(elem => elem.plan == "TIER_ONE")
 ```
+
 ## 3-
 ```js
 x = await fetch('http://api.football-data.org/v4/competitions').then(r => r.json())
 x.competitions.filter(elem => elem.area.name=="Spain")
 ```
+
 ## 4-
 ```js
 x = await fetch('http://api.football-data.org/v4/competitions').then(r => r.json())
 x.competitions.filter(elem => elem.plan=="TIER_ONE" && (elem.area.code=="ESP" || elem.area.code=="DEU" || elem.area.code=="ENG" || elem.area.code=="FRA"))
 ```
+
 ## 5-
 ```js
 x = await fetch('http://api.football-data.org/v4/competitions').then(r => r.json())
 x.competitions.filter(elem => elem.plan=="TIER_ONE" && (elem.area.code=="ESP" || elem.area.code=="DEU" || elem.area.code=="ENG" || elem.area.code=="FRA") && elem.name!="Championship")
 ```
+
 ## 6-
 ```js
 x = await fetch('http://api.football-data.org/v4/competitions').then(r => r.json())
 y = x.competitions.filter(elem => elem.plan=="TIER_ONE" && (elem.area.code=="ESP" || elem.area.code=="DEU" || elem.area.code=="ENG" || elem.area.code=="FRA") && elem.name!="Championship")
 y.map(elem => elem.id)
 ```
+
 # 5.4
+
 ## 1-
 ```js
 // Cargar la base de datos
