@@ -69,27 +69,27 @@ try {
     console.log(err)
 }
 
-const writepath3 = 'json/players/'
+// const writepath3 = 'json/players/'
 
-fs.mkdirSync(writepath3, { recursive: true })
+// fs.mkdirSync(writepath3, { recursive: true })
 
-try {
-    //read leagues file into an array of lines
-    const data = fs.readFileSync('playerIDs.txt', 'utf-8').split("\n")
-    setInterval(data.forEach((elem, idx) => {
-        console.log(elem)
-        const url = `https://media.api-sports.io/football/players/${elem}.png`
+// try {
+//     //read leagues file into an array of lines
+//     const data = fs.readFileSync('playerIDs.txt', 'utf-8').split("\n")
+//     setInterval(data.forEach((elem, idx) => {
+//         console.log(elem)
+//         const url = `https://media.api-sports.io/football/players/${elem}.png`
         
-        fetch(url).then(res => {
-            //check status
-            console.log("res.url: " + res.url)
-            if (res.status === 200) {
-                res.body.pipe(fs.createWriteStream(`${writepath3}${elem}.png`))
-            } else {
-                console.log(`status: ${res.status} line: ${idx} elem: ${elem} not found`)
-            }
-        }).catch(err => console.log(err))
-    }), 100)
-} catch (err) {
-    console.log(err)
-}
+//         fetch(url).then(res => {
+//             //check status
+//             console.log("res.url: " + res.url)
+//             if (res.status === 200) {
+//                 res.body.pipe(fs.createWriteStream(`${writepath3}${elem}.png`))
+//             } else {
+//                 console.log(`status: ${res.status} line: ${idx} elem: ${elem} not found`)
+//             }
+//         }).catch(err => console.log(err))
+//     }), 100)
+// } catch (err) {
+//     console.log(err)
+// }
