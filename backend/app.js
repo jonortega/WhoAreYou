@@ -4,7 +4,7 @@ import fetch from 'node-fetch'
 const writepath = 'json/leagues/'
 
 //Se usa para crear un directorio de forma sincrona.
-//Hace que devuelva la ruta del primer directorio creado. ??ESTO MIRAR PORQUE NO ESTOY SEGURO
+//{recursive: true} significa que se pueden crear directorios dentro de directorios.
 fs.mkdirSync(writepath, {recursive:true})
 
 try{
@@ -20,8 +20,8 @@ try{
             // 429: indica que el usuario ha enviado muchas peticiones (request) en un periodo de tiempo determinado ("limitación de velocidad")
             // 500:  indica que el servidor encontró una condición inesperada que le impide completar la petición.
             if(res.status === 200) {
-                //res.body.pipe crea una "tuberia" (pipe) para relacionar el flujo de lectura con el fujo de escritura. ??ESTO MIRAR PORQUE NO ESTOY SEGURO
-                //fs.createWriteStream() crea un elemento en el path indicado en el cual se permite escribir. ??ESTO MIRAR PORQUE NO ESTOY SEGURO
+                //res.body.pipe crea una "tuberia" (pipe) para relacionar el flujo de lectura con el fujo de escritura.
+                //fs.createWriteStream() crea un elemento en el path indicado al cual se permite escribir.
                 res.body.pipe(fs.createWriteStream(`${writepath}${elem}.png`))
             }else {
                 console.log(`status: ${res.status} line: ${idx} elem: ${elem} not found`)
@@ -34,13 +34,19 @@ try{
 
 const writepath1 = 'json/nationalities/'
 
+fs.mkdirSync(writepath1, {recursive:true})
+
 try{
     //read leagues file into an array of lines
     const data = fs.readFileSync('nationalities.txt', 'utf-8').split("\n")
     data.forEach((elem, idx) => {
+        // if (elem.includes(" ")) {
+        //     elem = elem.replaceAll(" ", "%20")
+        // }
         const url = `https://playfootball.games/who-are-ya/media/nations/${elem}.svg`
         fetch(url).then(res => {
             //check status
+            console.log(res)
             if(res.status === 200) {
                 res.body.pipe(fs.createWriteStream(`${writepath1}${elem}.svg`))
             }else {
