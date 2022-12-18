@@ -1,15 +1,17 @@
 # Explicación general
 
 ## Organización de las carpetas
-- La carpeta _backend/_ ha sido donde hemos ido haciendo los ejercicios hasta ahora, pero ese no va a ser el backend real de la aplicación.
-- El backend real que luego se usará, es lo que está dentro de la carpeta _app/_.
-- Por ahora vamos haciendo las cosas por separado, pero cuando haya que subirlo a Azure, hay que pasar las cosas que haya en _backend/_ a _app/_.
+La carpeta _backend/_ ha sido donde hemos ido haciendo los ejercicios hasta ahora, pero ese no va a ser el backend real de la aplicación.  
+
+El backend real que luego se usará, es lo que está dentro de la carpeta _app/_.  
+
+Por ahora vamos haciendo las cosas por separado, pero cuando haya que subirlo a Azure, hay que pasar las cosas que haya en _backend/_ a _app/_.  
 
 ## Dudas
-- Creo que cuando entres en http://localhost:3000 tiene que salir el login.ejs.
+- Creo que cuando entres en http://localhost:3000 tiene que salir el _login.ejs_.
 - Una vez iniciado sesión no sé a que URL hay que ir. Creo que lo que más sentido tiene es:
   - Ir a http://localhost:3000/user/ para mostrar el juego en sí (puede ser otra URL).
-  - Ir a http://localhost:3000/admin/ y ahí enseñar el form.ejs para poder modificar los datos de la BD.
+  - Ir a http://localhost:3000/admin/ y ahí enseñar el _form.ejs_ para poder modificar los datos de la BD.
   - Cuando el admin rellene ese formulario y le de a enviar, los datos se envían los diferentes endpoints de la API, dependiendo de lo que quiera hacer.
 
 # Tareas que hay que hacer (elegid alguna):
@@ -18,7 +20,7 @@
 - **Lugar:** /backend/app.js
 - El `try-catch` que está comentado al final.
 - Hacer que haga 10 peticiones `fetch` por segundo usando `setInterval()`.
-- Todavía no podemos probarlo porque nos falta un _platerIDs.txt_ limpio.
+> **Nota:** Todavía no podemos probarlo porque nos falta un _platerIDs.txt_ limpio.
 
 ## Crear un formulario con express-validator
 - **Lugar:** /app/form.ejs
