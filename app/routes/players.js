@@ -3,10 +3,13 @@ const mongojs = require('mongojs')
 const db = mongojs('mongodb://127.0.0.1:27017/footballdata', ['players'])
 var router = express.Router();
 
+router.use(express.json());
+router.use(express.urlencoded({ extended: false }));
+
 
 // Función para borrar
 let remove = function (res, id) {
-  db.footballdata.remove({ _id: mongojs.ObjectId(id) }, (err, result) => {
+  db.players.remove({ id: parseInt(req.params.id) }, (err, result) => {
     if (err) {
       res.send(err);
     } else {
@@ -17,12 +20,11 @@ let remove = function (res, id) {
 
 // Visualizar datos del jugador
 router.get('/:id', function (req, res) {
-  db.footballdata.findOne({ id: req.params.id }, (err, doc) => {
+  db.players.find({ id: parseInt(req.params.id) }, (err, docs) => {
     if (err) {
       res.send(err);
     } else {
-      console.log(doc)
-      res.render('player', { element: doc })
+      res.render('player', { element:  docs})
     }
   })
 });
