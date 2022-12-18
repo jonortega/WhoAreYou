@@ -8,7 +8,7 @@
   </head>
   <body>
     <div id="main">
-      <form action="./add" method="post">
+      <form action="/api/v1/players/add" method="post">
         <label for="name">id</label>
         <input type="text" id="id" name="id" />
         <label for="name">name</label>
@@ -25,11 +25,8 @@
         <input type="text" id="number" name="number" />
         <label for="name">leagueId</label>
         <input type="text" id="leagueId" name="leagueId" />
-
-        <input type="submit" class="form-submit" value="Visualizar información del jugador" />
+        
         <input type="submit" class="form-submit" value="Añadir jugador" />
-        <input type="submit" class="form-submit" value="Modificar jugador" />
-        <input type="submit" class="form-submit" value="Borrar jugador" />
       </form>
     </div>
   </body>

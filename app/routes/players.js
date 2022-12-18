@@ -6,18 +6,6 @@ var router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
 
-
-// Función para borrar
-let remove = function (res, id) {
-  db.players.remove({ id: parseInt(req.params.id) }, (err, result) => {
-    if (err) {
-      res.send(err);
-    } else {
-      console.log(result);
-    }
-  });
-}
-
 // Visualizar datos del jugador
 router.get('/:id', function (req, res) {
   db.players.find({ id: parseInt(req.params.id) }, (err, docs) => {
@@ -31,13 +19,33 @@ router.get('/:id', function (req, res) {
 
 // Borrar datos del jugador
 router.get('/remove/:id', function (req, res) {
-  remove(res, req.params.id);
+
+  db.players.remove({ id: parseInt(req.params.id) }, (err, docs) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.render('form');
+    }
+  });
 });
 
 // Crear jugador
 router.post('/add', function (req, res) {
-  //AÑADIR A LA BD EL JUGADOR
-  res.send('added');
+
+    console.log(req.body)
+
+    req.body.id = parseInt(req.body.id)
+    req.body.teamId = parseInt(req.body.teamId)
+    req.body.number = parseInt(req.body.number)
+    req.body.leagueId = parseInt(req.body.leagueId)
+
+    db.players.insert(req.body, (err, docs) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.render('player' ,{element: docs})
+        }
+    })
 });
 
 // Modificar datos del jugador
