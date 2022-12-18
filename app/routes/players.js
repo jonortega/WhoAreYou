@@ -12,7 +12,7 @@ router.get('/:id', function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.render('player', { element:  docs})
+      res.render('player', { element: docs })
     }
   })
 });
@@ -32,24 +32,24 @@ router.get('/remove/:id', function (req, res) {
 // Crear jugador
 router.post('/add', function (req, res) {
 
-    console.log(req.body)
+  console.log(req.body)
 
-    req.body.id = parseInt(req.body.id)
-    req.body.teamId = parseInt(req.body.teamId)
-    req.body.number = parseInt(req.body.number)
-    req.body.leagueId = parseInt(req.body.leagueId)
+  req.body.id = parseInt(req.body.id)
+  req.body.teamId = parseInt(req.body.teamId)
+  req.body.number = parseInt(req.body.number)
+  req.body.leagueId = parseInt(req.body.leagueId)
 
-    db.players.insert(req.body, (err, docs) => {
-        if (err) {
-            res.send(err)
-        } else {
-            res.render('player' ,{element: docs})
-        }
-    })
+  db.players.insert(req.body, (err, docs) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.render('player', { element: docs })
+    }
+  })
 });
 
 // Modificar datos del jugador
-router.put('/edit/:id', function (req, res) {
+router.put('/edit', function (req, res) {
 
   req.body.id = parseInt(req.body.id)
   req.body.teamId = parseInt(req.body.teamId)
@@ -57,15 +57,15 @@ router.put('/edit/:id', function (req, res) {
   req.body.leagueId = parseInt(req.body.leagueId)
 
   db.players.findAndModify({
-    query: {id: parseInt(req.params.id)},
-    update: {$set: req.body}
-}, (err, result) => {
+    query: { id: req.body.id },
+    update: { $set: req.body }
+  }, (err, result) => {
     if (err) {
-        res.send(err)
+      res.send(err)
     } else {
-        res.render('form')
+      res.render('form')
     }
-})
+  })
 });
 
 module.exports = router;
