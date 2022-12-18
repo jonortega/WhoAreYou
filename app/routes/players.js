@@ -50,7 +50,22 @@ router.post('/add', function (req, res) {
 
 // Modificar datos del jugador
 router.put('/edit/:id', function (req, res) {
-  res.send('respond with a resource');
+
+  req.body.id = parseInt(req.body.id)
+  req.body.teamId = parseInt(req.body.teamId)
+  req.body.number = parseInt(req.body.number)
+  req.body.leagueId = parseInt(req.body.leagueId)
+
+  db.players.findAndModify({
+    query: {id: parseInt(req.params.id)},
+    update: {$set: req.body}
+}, (err, result) => {
+    if (err) {
+        res.send(err)
+    } else {
+        res.render('form')
+    }
+})
 });
 
 module.exports = router;
