@@ -24,7 +24,7 @@ router.get('/remove/:id', function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.render('form');
+      res.render('form', {element: docs});
     }
   });
 });

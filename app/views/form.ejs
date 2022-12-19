@@ -4,33 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="stylesheets/form.css" rel="stylesheet" />
     <title>Document</title>
+    <script src="apiActions.js"></script>
   </head>
   <body>
+    <h1 id="admin">Admin</h1>
     <div id="main">
-      <form action="/api/v1/players/add" method="post">
+      <form>
         <label for="name">id</label>
-        <input type="text" id="id" name="id" />
+        <input type="text" id="id" name="id" value="<%=element.id%>"/>
+        <br>
         <label for="name">name</label>
-        <input type="text" id="name" name="name" />
+        <input type="text" id="name" name="name" value="<%=element.name%>"/>
+        <br>
         <label for="name">birthdate</label>
-        <input type="text" id="birthdate" name="birthdate" />
+        <input type="text" id="birthdate" name="birthdate" value="<%=element.birthdate%>"/>
+        <br>
         <label for="name">nationality</label>
-        <input type="text" id="nationality" name="nationality" />
+        <input type="text" id="nationality" name="nationality" value="<%=element.nationality%>"/>
+        <br>
         <label for="name">teamId</label>
-        <input type="text" id="teamId" name="teamId" />
+        <input type="text" id="teamId" name="teamId" value="<%=element.teamId%>"/>
+        <br>
         <label for="name">position</label>
-        <input type="text" id="position" name="position" />
+        <input type="text" id="position" name="position" value="<%=element.position%>"/>
+        <br>
         <label for="name">number</label>
-        <input type="text" id="number" name="number" />
+        <input type="text" id="number" name="number" value="<%=element.number%>"/>
+        <br>
         <label for="name">leagueId</label>
-        <input type="text" id="leagueId" name="leagueId" />
+        <input type="text" id="leagueId" name="leagueId" value="<%=element.leagueId%>"/>
         
       </form>
-      <input type="button" id="añadir" value="Añadir">
-      <input type="button" id="buscar" value="Buscar">
-      <input type="button" id="modificar" value="Modificar">
-      <input type="button" id="eliminar" value="Eliminar">
+      <br>
+      <input type="button" id="aniadir" value="Aniadir" onclick="aniadir()">
+      <input type="button" id="buscar" value="Buscar" onclick="buscar()">
+      <input type="button" id="modificar" value="Modificar" onclick="modificar()">
+      <input type="button" id="eliminar" value="Eliminar" onclick="eliminar()">
     </div>
   </body>
 </html>
