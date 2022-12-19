@@ -12,7 +12,11 @@ let buscar=document.getElementById('buscar')
 let modificar=document.getElementById('modificar')
 let eliminar=document.getElementById('eliminar')
 
-async aniadir.addEventListener('click', (event)=> {
+// aniadir.addEventListener('click', (event)=> {
+//     aniadir();
+// })
+
+async function aniadir(){
     await fetch('http://localhost:4000/api/v1/players/add', {
         method: 'POST',
         headers: {
@@ -20,13 +24,21 @@ async aniadir.addEventListener('click', (event)=> {
         },
         body: JSON.stringify({id: id, name: name, birthdate: birthdate, nationality: nationality, teamId: teamId, position: position, number: number, leagueId: leagueId})
     })
-})
+}
 
-async buscar.addEventListener('click', (event)=> {
+// buscar.addEventListener('click', (event)=> {
+//     buscar();
+// })
+
+async function buscar(){
     await fetch('http://localhost:4000//api/v1/players'+id).then(console.log(res))
-})
+}
 
-async modificar.addEventListener('click', (event)=> {
+// modificar.addEventListener('click', (event)=> {
+//    modificar();
+// })
+
+async function modificar(){
     await fetch('http://localhost:4000/api/v1/players/edit', {
         method: 'PUT',
         headers: {
@@ -34,9 +46,12 @@ async modificar.addEventListener('click', (event)=> {
         },
         body: JSON.stringify({id: id, name: name, birthdate: birthdate, nationality: nationality, teamId: teamId, position: position, number: number, leagueId: leagueId})
     })
-})
+}
 
-async eliminar.addEventListener('click', (event)=> {
+// eliminar.addEventListener('click', (event)=> {
+//     eliminar();
+// })
+
+async function eliminar(){
     await fetch('http://localhost:4000/api/v1/players/remove'+id).then(console.log(res))
-
-})
+}
