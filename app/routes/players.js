@@ -12,7 +12,8 @@ router.get('/:id', function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.render('player', { element: docs })
+      console.log(docs[0])
+      res.render('form', { element: docs[0] })
     }
   })
 });
@@ -24,7 +25,7 @@ router.get('/remove/:id', function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.render('form', {element: docs});
+      res.render('form', { element: docs });
     }
   });
 });
@@ -63,7 +64,7 @@ router.put('/edit', function (req, res) {
     if (err) {
       res.send(err)
     } else {
-      res.render('form', {element: docs});
+      res.render('form', { element: docs });
     }
   })
 });
