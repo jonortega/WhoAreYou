@@ -25,7 +25,7 @@ router.get('/remove/:id', function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.render('form', { element: docs });
+      res.send("<h3>Jugador eliminado.</h3>");
     }
   });
 });
@@ -44,7 +44,7 @@ router.post('/add', function (req, res) {
     if (err) {
       res.send(err)
     } else {
-      res.render('player', { element: docs })
+      res.send("<h3>Nuevo jugador añadido.</h3>")
     }
   })
 });
@@ -64,7 +64,7 @@ router.put('/edit', function (req, res) {
     if (err) {
       res.send(err)
     } else {
-      res.render('form', { element: docs });
+      res.send("<h3>Juador modificado.</h3>");
     }
   })
 });

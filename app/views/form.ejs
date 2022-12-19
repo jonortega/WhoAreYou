@@ -13,34 +13,75 @@
       <h1 id="admin">Admin Panel</h1>
       <form>
         <label for="name">id</label>
-        <input type="text" id="id" name="id" value="<%=element.id%>"/>
-        <br>
+        <input type="text" id="id" name="id" value="<%=element.id%>" />
+        <br />
         <label for="name">name</label>
-        <input type="text" id="name" name="name" value="<%=element.name%>"/>
-        <br>
+        <input type="text" id="name" name="name" value="<%=element.name%>" />
+        <br />
         <label for="name">birthdate</label>
-        <input type="text" id="birthdate" name="birthdate" value="<%=element.birthdate%>"/>
-        <br>
+        <input
+          type="text"
+          id="birthdate"
+          name="birthdate"
+          value="<%=element.birthdate%>"
+        />
+        <br />
         <label for="name">nationality</label>
-        <input type="text" id="nationality" name="nationality" value="<%=element.nationality%>"/>
-        <br>
+        <input
+          type="text"
+          id="nationality"
+          name="nationality"
+          value="<%=element.nationality%>"
+        />
+        <br />
         <label for="name">teamId</label>
-        <input type="text" id="teamId" name="teamId" value="<%=element.teamId%>"/>
-        <br>
+        <input
+          type="text"
+          id="teamId"
+          name="teamId"
+          value="<%=element.teamId%>"
+        />
+        <br />
         <label for="name">position</label>
-        <input type="text" id="position" name="position" value="<%=element.position%>"/>
-        <br>
+        <input
+          type="text"
+          id="position"
+          name="position"
+          value="<%=element.position%>"
+        />
+        <br />
         <label for="name">number</label>
-        <input type="text" id="number" name="number" value="<%=element.number%>"/>
-        <br>
+        <input
+          type="text"
+          id="number"
+          name="number"
+          value="<%=element.number%>"
+        />
+        <br />
         <label for="name">leagueId</label>
-        <input type="text" id="leagueId" name="leagueId" value="<%=element.leagueId%>"/>
+        <input
+          type="text"
+          id="leagueId"
+          name="leagueId"
+          value="<%=element.leagueId%>"
+        />
       </form>
-      <br>
-      <input type="button" id="aniadir" value="Añadir" onclick = "aniadir()">
-      <input type="button" id="buscar" value="Buscar" onclick="buscar()">
-      <input type="button" id="modificar" value="Modificar" onclick="modificar()">
-      <input type="button" id="eliminar" value="Eliminar" onclick="eliminar()">
+      <br />
+      <div id="notification"></div>
+      <input type="button" id="aniadir" value="Añadir" onclick="aniadir()" />
+      <input type="button" id="buscar" value="Buscar" onclick="buscar()" />
+      <input
+        type="button"
+        id="modificar"
+        value="Modificar"
+        onclick="editar()"
+      />
+      <input
+        type="button"
+        id="eliminar"
+        value="Eliminar"
+        onclick="eliminar()"
+      />
     </div>
   </body>
 </html>
