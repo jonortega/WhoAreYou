@@ -1,9 +1,10 @@
 *{box-sizing:border-box;}
 
-#admin{
-    width:72px;
-	font-weight:bold;
-	display:inline-block;
+#main{
+    width:330px;
+	padding:16px;
+	border-radius:10px;
+	margin:auto;
 }
 
 form{
@@ -31,7 +32,7 @@ form input[type="text"]{
 }
 
 input[type="button"]{
-	width:300px;
+	width:100%;
 	padding:8px 16px;
 	margin-top:32px;
 	border:1px solid #000;
