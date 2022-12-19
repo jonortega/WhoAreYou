@@ -29,8 +29,9 @@ Por ahora vamos haciendo las cosas por separado, pero cuando haya que subirlo a 
 - Hay que verificar los datos que se meten con **express-validator**.
 - Si acepta los datos, el servidor mostratá en consola los datos del POST.
 - Más adelante hay que conectar este formulario con todos los endpoints de la API para que modifique la BD directamente.
+> **Nota:** Ni puta idea del validator.
 
-## Crear una pantalla de inicio de sesión con express-session
+## Crear una pantalla de inicio de sesión con express-session (NO USAMOS SESSION???)
 - **Lugar:** /app/views/login.ejs
 - Hay dos tipos de usuario: _admin_ y _user_
 - Crear un formulario para el login.
@@ -43,7 +44,7 @@ Por ahora vamos haciendo las cosas por separado, pero cuando haya que subirlo a 
 - Usar **express-session** para poder inicar sesión y asignar los roles.
 - En MongoDB se van a guardar los datos de los usuarios de antemano diciendo si son _admin_ o _user_.
 
-## Programar los endpoints de la API
+## Programar los endpoints de la API (TERMINADO)
 - **Lugar:** /app/routes/players.js
 - Por ahora solo tiene que hacer `res.send()` al cliente con los datos.
 - Los datos se obtienen y se modifican en MongoDB.
@@ -54,7 +55,7 @@ Por ahora vamos haciendo las cosas por separado, pero cuando haya que subirlo a 
   |    GET | /api/v1/players/:id        | Devuelve los datos del jugador con id = :id.            |
   |    GET | /api/v1/players/remove/:id | Elimina al jugador de la BD.                            |
   |   POST | /api/v1/players/add        | Añade a la BD un nuevo jugador con los datos recibidos. |
-  |    PUT | /api/v1/players/edit/:id   | Modifica los datos del jugador de la BD.                |
+  |    PUT | /api/v1/players/edit       | Modifica los datos del jugador de la BD.                |
 
   > **Nota:** Los datos de los jugadores están en MongoDB -> footballdata/players
 
