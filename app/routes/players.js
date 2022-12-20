@@ -2,6 +2,7 @@ var express = require('express');
 const mongojs = require('mongojs')
 const db = mongojs('mongodb://127.0.0.1:27017/footballdata', ['players'])
 var router = express.Router();
+const { body, validationResult } = require('express-validator')
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
@@ -30,8 +31,30 @@ router.get('/remove/:id', function (req, res) {
   });
 });
 
+function validacion(req, res, next){
+  const errors = validationResult(req)
+  if(!errors.isEmpty){
+    return res.status(400).json({errors: errors.array()})
+  }
+
+  db.players.find({id: parseInt(req.params.id)}, (err,docs) => {
+    if(err){
+      console.log(err)
+    }else{
+      if(docs[0]){
+        res.send("<h3>Ya existe un jugador con esa id</h3>")
+      }else{
+        next()
+      }
+    }
+  })
+
+}
+
 // Crear jugador
-router.post('/add', function (req, res) {
+router.post('/add', validacion, function (req, res) {
+
+  body('id').isLength({min: 1}).withMessage('El id no puede estar vacio.')
 
   console.log(req.body)
 
