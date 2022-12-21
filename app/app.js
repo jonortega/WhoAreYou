@@ -29,14 +29,7 @@ app.use('/game', gameRouter);
 app.use('/admin', adminRouter);
 app.use('/api/v1/players', playersRouter);
 
-// const sess = {
-//   secret: 'palabras aleatorias',
-//   cookie: {},
-//   resave: false,
-//   saveUninitialized: true
-// }
-// app.use(session(sess))
-
+// Comprobar que los datos son correctos
 function authenticate(req, res, next) {
   let minombre = req.body.nombre
   let miapellido = req.body.apellido
@@ -64,11 +57,11 @@ app.post('/check', authenticate, (req, res) => {
     } else {
 
       if (docs[0].rol == "admin") {
-        // req.session.rol = "admin"
+        // rol = "admin"
         res.redirect('/admin')
 
       } else if (docs[0].rol == "user") {
-        // req.session.rol = "user"
+        // rol = "user"
         res.redirect('/game')
 
       } else {

@@ -13,9 +13,9 @@ router.get('/:id', function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      if(docs[0]){
+      if (docs[0]) {
         res.render('form', { element: docs[0] })
-      }else{
+      } else {
         res.send("<h3>No existe un jugador con esa id.</h3>")
       }
     }
@@ -46,12 +46,12 @@ router.post('/add', validateCreate, function (req, res) {
 
   let meter
 
-  db.players.find({id: req.body.id }, (err, docs) => {
+  // Insertar solo si no existe esa id en la BD
+  db.players.find({ id: req.body.id }, (err, docs) => {
     if (err) {
       res.send(err)
     } else {
-      if(docs.length == 0){
-        console.log("Camino correcto")
+      if (docs.length == 0) {
         db.players.insert(req.body, (err, docs) => {
           if (err) {
             res.send(err)
@@ -59,15 +59,15 @@ router.post('/add', validateCreate, function (req, res) {
             res.send("<h3>Nuevo jugador añadido.</h3>")
           }
         })
-      }else{
+      } else {
         res.send("<h3>Existe un jugador con esa id.</h3>")
       }
     }
   })
-  
 
 
-  
+
+
 });
 
 // Modificar datos del jugador
