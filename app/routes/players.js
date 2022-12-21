@@ -13,8 +13,11 @@ router.get('/:id', function (req, res) {
     if (err) {
       res.send(err);
     } else {
-      console.log(docs[0])
-      res.render('form', { element: docs[0] })
+      if(docs[0]){
+        res.render('form', { element: docs[0] })
+      }else{
+        res.send("<h3>No existe un jugador con esa id.</h3>")
+      }
     }
   })
 });
