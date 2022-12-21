@@ -10,7 +10,7 @@ async function aniadir() {
         "leagueId": document.getElementById("leagueId").value
     }
 
-    let response = await fetch("http://localhost:3000/api/v1/players/add", {
+    let response = await fetch("https://jortega.eus/api/v1/players/add", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ function replaceContent(page) {
 
 async function buscar() {
     let id = document.getElementById("id").value
-    let page = await fetch('http://localhost:3000/api/v1/players/' + id).then(r => r.text())
+    let page = await fetch('https://jortega.eus/api/v1/players/' + id).then(r => r.text())
     replaceContent(page)
 }
 
@@ -45,7 +45,7 @@ async function editar() {
         "leagueId": document.getElementById("leagueId").value
     }
 
-    let response = await fetch('http://localhost:3000/api/v1/players/edit', {
+    let response = await fetch('https://jortega.eus/api/v1/players/edit', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ async function editar() {
 
 async function eliminar() {
     let id = document.getElementById('id').value
-    let response = await fetch('http://localhost:3000/api/v1/players/remove/' + id).then(r => r.text())
+    let response = await fetch('https://jortega.eus/api/v1/players/remove/' + id).then(r => r.text())
 
     document.getElementById("notification").innerHTML = response
 }

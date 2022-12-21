@@ -46,7 +46,7 @@ try {
     console.log(err)
 }
 
-const writepath2 = 'json/coatOfArms/'
+const writepath2 = 'json/teams/'
 
 fs.mkdirSync(writepath2, { recursive: true })
 

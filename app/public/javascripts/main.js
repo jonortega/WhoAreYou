@@ -46,8 +46,7 @@ Promise.all([fetchJSON("json/fullplayers.json"), fetchJSON("json/solution.json")
 
     document.getElementById(
         "mistery"
-    ).src = `https://playfootball.games/media/players/${game.solution.id % 32
-    }/${game.solution.id}.png`;
+    ).src = `https://jortega.eus/images/players/${game.solution.id}.png`;
 
 
     // YOUR CODE HERE

@@ -29,6 +29,11 @@ app.use('/game', gameRouter);
 app.use('/admin', adminRouter);
 app.use('/api/v1/players', playersRouter);
 
+app.use("/images/players", express.static("/home/jortega/sw/app/football/players"))
+app.use("/images/leagues", express.static("/home/jortega/sw/app/football/leagues"))
+app.use("/images/nationalities", express.static("/home/jortega/sw/app/football/nationalities"))
+app.use("/images/teams", express.static("/home/jortega/sw/app/football/teams"))
+
 // Comprobar que los datos son correctos
 function authenticate(req, res, next) {
   let minombre = req.body.nombre
