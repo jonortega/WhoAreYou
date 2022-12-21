@@ -44,13 +44,30 @@ router.post('/add', validateCreate, function (req, res) {
   req.body.number = parseInt(req.body.number)
   req.body.leagueId = parseInt(req.body.leagueId)
 
-  db.players.insert(req.body, (err, docs) => {
+  let meter
+
+  db.players.find({id: req.body.id }, (err, docs) => {
     if (err) {
       res.send(err)
     } else {
-      res.send("<h3>Nuevo jugador añadido.</h3>")
+      if(docs.length == 0){
+        console.log("Camino correcto")
+        db.players.insert(req.body, (err, docs) => {
+          if (err) {
+            res.send(err)
+          } else {
+            res.send("<h3>Nuevo jugador añadido.</h3>")
+          }
+        })
+      }else{
+        res.send("<h3>Existe un jugador con esa id.</h3>")
+      }
     }
   })
+  
+
+
+  
 });
 
 // Modificar datos del jugador
