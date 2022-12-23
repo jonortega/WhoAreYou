@@ -114,7 +114,7 @@ export let setupRows = function (game) {
 
     function setContent(guess) {
         return [
-            `<img src="https://jortega.eus/images/nationalities/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
+            `<img src="https://jortega.eus/images/nationalities/${guess.nationality}.svg" alt="" style="width: 60%;">`,
             `<img src="https://jortega.eus/images/leagues/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
             `<img src="https://jortega.eus/images/teams/${guess.teamId}.png" alt="" style="width: 60%;">`,
             `${guess.position}`,
